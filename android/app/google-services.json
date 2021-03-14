@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1061821982318",
+    "firebase_url": "https://oclcokc.firebaseio.com",
+    "project_id": "oclcokc",
+    "storage_bucket": "oclcokc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061821982318:android:2a6b7f322272916f55a87f",
+        "android_client_info": {
+          "package_name": "com.example.oclock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061821982318-4j8s6ghc4442jd8lf1btokmb84oaamjo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.oclock",
+            "certificate_hash": "75f8e4e698f17de7d44cc9b6dbe024ee5bf5965a"
+          }
+        },
+        {
+          "client_id": "1061821982318-ih92gm5p0a4i4e50ufl4592d5s2ipiq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI3yuGd9mJLYxNkhdiOGWKfyuAdPmCk5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061821982318-ih92gm5p0a4i4e50ufl4592d5s2ipiq5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
