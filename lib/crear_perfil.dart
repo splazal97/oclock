@@ -7,25 +7,20 @@ import 'util.dart';
 
 import 'pagina_inicio.dart';
 
-
-class PaginaHome extends StatefulWidget {
+class CrearPerfil extends StatefulWidget {
   @override
-  createState() => _PaginaHomeState();
+  createState() => _CrearPerfil();
 }
 
-class _PaginaHomeState extends State<PaginaHome> {
+class _CrearPerfil extends State<CrearPerfil>{
   var _email = "anoymous";
-  var ahora = new DateTime.now();
   var _userId;
 
-
   @override
-  initState() {
+  void initState() {
     super.initState();
-
     _obtenerEmailLogueado();
   }
-
   _obtenerEmailLogueado() async {
     var usuario = await FirebaseAuth.instance.currentUser();
 
@@ -36,36 +31,19 @@ class _PaginaHomeState extends State<PaginaHome> {
       });
     }
     //else {
-     // navegarHacia(context, PaginaAcceso());
+    // navegarHacia(context, PaginaAcceso());
     //}
   }
-  _iniciarJornada() async {
-    await Firestore.instance.collection("fichar").add({'inicio' : new DateTime.now(),'userID' : _userId});
 
-  }
 
-  _cerrarSesion() async {
-    await FirebaseAuth.instance.signOut();
-    navegarHacia(context, PaginaInicio());
-  }
-
-  @override
-  build(context) => Scaffold(
+  build(context) =>Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF1a1a1a),
-
         actions: <Widget>[
+
         ],
       ),
-    drawer: Drawer(child: MenuLateral()),
+    drawer: Drawer(child: MenuLateral(),),
     backgroundColor: Colors.black,
-    floatingActionButton: FloatingActionButton(
-      backgroundColor: Color(0XFF434343),
-      child: Icon(Icons.add),
-    onPressed: (){
-        _iniciarJornada();
-
-    },
-    ),
   );
 }
