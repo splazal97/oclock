@@ -83,7 +83,7 @@ class _MenuLateralState extends State<MenuLateral>{
               title: Text('Perfil',style: TextStyle(color: Colors.white),),
               leading: Icon(Icons.person,color: Color(0xff7CC7EE)),
               onTap: (){
-                _irInicioUser();
+                _irPerfil();
               },
             ),
 

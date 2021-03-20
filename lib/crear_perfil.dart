@@ -21,12 +21,13 @@ class _CrearPerfil extends State<CrearPerfil>{
   final _apellido1 = TextEditingController();
   final _apellido2 = TextEditingController();
   final _DNI = TextEditingController();
-  final _uid = TextEditingController();
   var _imagen;
   var _imagenURL;
   var _email = "anoymous";
   var _userId;
   var _fotoCorreo = "";
+  var _creando = false;
+
 
   @override
   void initState() {
@@ -62,15 +63,26 @@ class _CrearPerfil extends State<CrearPerfil>{
       _imagenURL = url;
     });
   }
+  _guardarPerfil() async {
+    setState(() {
+      _creando = true;
+
+    });
+
+    if (_imagen != null) await _subirImagenAStorage();
+    await Firestore.instance.collection("perfil").document(_userId).setData({'nombre' : _Nombre,'apellido1' : _apellido1,'apellido2' : _apellido2,'DNI' : _DNI, 'email' : _email,'imagenURL' : _imagenURL});
+  setState(() {
+    _creando = false;
+  });
+  }
 
 
   build(context) =>Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF1a1a1a),
         actions: <Widget>[
-
-        ],
-      ),
+          ],
+  ),
     drawer: Drawer(child: MenuLateral(),),
     backgroundColor: Colors.black,
     body: Container(
@@ -153,9 +165,65 @@ class _CrearPerfil extends State<CrearPerfil>{
                 },
               ),
             ),
+            Container (
+              padding: EdgeInsets.fromLTRB(0,0,0,20),
+              child: TextFormField(
+                controller: _DNI,
+                decoration: const InputDecoration(labelText: 'DNI',
+                  labelStyle:  TextStyle(
+                      color:  Colors.black,
+                      fontSize: 20),
+                  fillColor: Colors.white,
+                  filled: true,
+                  border:  OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.black
+                    ),
+                    borderRadius: BorderRadius.all(
+                      const Radius.circular(10.0),
+                    ),
+                  ),),
+                validator: (value){
+                  if (value.isEmpty) return 'Por favor introduzca el DNI';
+                  return null;
+                },
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              child: Text(
+                  'AÑADIR IMAGEN',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
+              ),
+            ),
+            Container (
+              padding: EdgeInsets.fromLTRB(0,20,0,20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: _seleccionarImagenDeLaGaleria,
+                    child: _imagen == null ? const Icon(Icons.image, size: 150,color: Colors.white,) : Image.file(_imagen, height: 200),
+                  ),
             ],
         ),
-      ),
+        ),
+            FlatButton(
+              color: Colors.white,
+              textColor: Colors.black,
+              onPressed: _creando ? null : () async{
+                if (_keyFormulri.currentState.validate()){
+                  await _guardarPerfil();
+                  navegarAtras(context);
+                }
+              },
+              padding: EdgeInsets.all(15),
+              shape: StadiumBorder(),
+              child: const Text('CREAR'),
+            ),
+          ],
+    ),
+    ),
     ),
   );
 }
