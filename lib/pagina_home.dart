@@ -15,8 +15,8 @@ class PaginaHome extends StatefulWidget {
 
 class _PaginaHomeState extends State<PaginaHome> {
   var _email = "anoymous";
-  var ahora = new DateTime.now();
   var _userId;
+  var ahora = new DateTime.now();
 
 
   @override

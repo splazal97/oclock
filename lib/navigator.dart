@@ -8,6 +8,7 @@ import 'package:oclock/pagina_acceso.dart';
 import 'package:oclock/pagina_home.dart';
 import 'package:oclock/perfil.dart';
 
+import 'crear_perfil.dart';
 import 'util.dart';
 import 'pagina_inicio.dart';
 
@@ -50,7 +51,7 @@ class _MenuLateralState extends State<MenuLateral>{
     navegarHacia(context, PaginaHome());
   }
   void _irPerfil() async {
-    navegarHacia(context, PaginaPerfil());
+    navegarHacia(context, CrearPerfil());
   }
   @override
   Widget build(BuildContext context){
