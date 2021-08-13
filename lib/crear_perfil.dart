@@ -16,11 +16,11 @@ class CrearPerfil extends StatefulWidget {
 }
 
 class _CrearPerfil extends State<CrearPerfil>{
-  final _keyFormulri = GlobalKey<FormState>();
-  final _Nombre = TextEditingController();
-  final _apellido1 = TextEditingController();
-  final _apellido2 = TextEditingController();
-  final _DNI = TextEditingController();
+  final _keyFormulrio = GlobalKey<FormState>();
+  final _controlNombre = TextEditingController();
+  final _controlApellido1 = TextEditingController();
+  final _controlApellido2 = TextEditingController();
+  final _controlDNI = TextEditingController();
   var _imagen;
   var _imagenURL;
   var _email = "anoymous";
@@ -48,6 +48,9 @@ class _CrearPerfil extends State<CrearPerfil>{
     // navegarHacia(context, PaginaAcceso());
     //}
   }
+  _ObtenerPerfil() async {
+
+  }
   _seleccionarImagenDeLaGaleria() async {
     var imagen = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
@@ -70,7 +73,7 @@ class _CrearPerfil extends State<CrearPerfil>{
     });
 
     if (_imagen != null) await _subirImagenAStorage();
-    await Firestore.instance.collection("perfil").document(_userId).setData({'nombre' : _Nombre,'apellido1' : _apellido1,'apellido2' : _apellido2,'DNI' : _DNI, 'email' : _email,'imagenURL' : _imagenURL});
+    await Firestore.instance.collection("perfil").document(_userId).setData({'nombre' : _controlNombre.text,'apellido1' : _controlApellido1.text,'apellido2' : _controlApellido2.text,'DNI' : _controlDNI.text, 'email' : _email,'imagenURL' : _imagenURL});
   setState(() {
     _creando = false;
   });
@@ -88,18 +91,18 @@ class _CrearPerfil extends State<CrearPerfil>{
     body: Container(
       margin: EdgeInsets.all(24.0),
       child: Form(
-        key: _keyFormulri,
+        key: _keyFormulrio,
         child: ListView(
           children: [
             Container(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
               child: TextFormField(
-                controller: _Nombre,
+                controller: _controlNombre,
                 decoration: const InputDecoration(
                   labelText: 'Nombre',
                   labelStyle: TextStyle(
                     color: Colors.black,
-                    fontSize: 15),
+                    fontSize: 20),
                   fillColor: Colors.white,
                   filled: true,
                   border: OutlineInputBorder(
@@ -120,7 +123,7 @@ class _CrearPerfil extends State<CrearPerfil>{
             Container (
               padding: EdgeInsets.fromLTRB(0,0,0,20),
               child: TextFormField(
-                controller: _apellido1,
+                controller: _controlApellido1,
                 decoration: const InputDecoration(labelText: 'Apellido 1',
                   labelStyle:  TextStyle(
                       color:  Colors.black,
@@ -144,7 +147,7 @@ class _CrearPerfil extends State<CrearPerfil>{
             Container (
               padding: EdgeInsets.fromLTRB(0,0,0,20),
               child: TextFormField(
-                controller: _apellido2,
+                controller: _controlApellido2,
                 decoration: const InputDecoration(labelText: 'Apellido 2',
                   labelStyle:  TextStyle(
                       color:  Colors.black,
@@ -168,7 +171,7 @@ class _CrearPerfil extends State<CrearPerfil>{
             Container (
               padding: EdgeInsets.fromLTRB(0,0,0,20),
               child: TextFormField(
-                controller: _DNI,
+                controller: _controlDNI,
                 decoration: const InputDecoration(labelText: 'DNI',
                   labelStyle:  TextStyle(
                       color:  Colors.black,
@@ -209,10 +212,10 @@ class _CrearPerfil extends State<CrearPerfil>{
         ),
         ),
             FlatButton(
-              color: Colors.white,
+              color: Color(0xFF7CC7EE),
               textColor: Colors.black,
               onPressed: _creando ? null : () async{
-                if (_keyFormulri.currentState.validate()){
+                if (_keyFormulrio.currentState.validate()){
                   await _guardarPerfil();
                   navegarAtras(context);
                 }

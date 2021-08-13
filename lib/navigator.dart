@@ -86,6 +86,13 @@ class _MenuLateralState extends State<MenuLateral>{
                 _irPerfil();
               },
             ),
+            ListTile(
+              title: Text('Fichar',style: TextStyle(color: Colors.white),),
+              leading: Icon(Icons.home,color: Color(0xff7CC7EE),),
+              onTap: (){
+
+              },
+            ),
 
             ListTile(
                 title: Text('Salir',style: TextStyle(color: Colors.white),),
