@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:oclock/pagina_acceso.dart';
+import 'package:oclock/pagina_fichar.dart';
 import 'package:oclock/pagina_home.dart';
 import 'package:oclock/perfil.dart';
 
@@ -53,6 +54,9 @@ class _MenuLateralState extends State<MenuLateral>{
   void _irPerfil() async {
     navegarHacia(context, CrearPerfil());
   }
+  void _irFichar() async {
+    navegarHacia(context, FicharPage());
+  }
   @override
   Widget build(BuildContext context){
     return Drawer(
@@ -90,6 +94,7 @@ class _MenuLateralState extends State<MenuLateral>{
               title: Text('Fichar',style: TextStyle(color: Colors.white),),
               leading: Icon(Icons.home,color: Color(0xff7CC7EE),),
               onTap: (){
+                _irFichar();
 
               },
             ),
